@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Calgary Digital Twin Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <div class="open-btn" onmouseover="toggleSidebar()">&#9776;</div>
+    <div id="sidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="hideSidebar()">
+        <h3>Menu</h3>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li>
+                <a href="{% url 'weather' %}" onmouseover="toggleDropdown(event)" onmouseout="hideDropdown(event)">Weather</a>
+                <div class="dropdown-content">
+                    <a href="#">Option 1</a>
+                    <a href="#">Option 2</a>
+                    <a href="#">Option 3</a>
+                </div>
+            </li>
+            <li>
+                <a href="#" onmouseover="toggleDropdown(event)" onmouseout="hideDropdown(event)">Traffic</a>
+                <div class="dropdown-content">
+                    <a href="#">Option 1</a>
+                    <a href="#">Option 2</a>
+                    <a href="#">Option 3</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <header>
+        <h1>Calgary Digital Twin Dashboard</h1>
+    </header>
+   
+    <main>
+        {% block content %}
+        <!-- Content specific to each page will be inserted here -->
+        {% endblock %}
+    </main>
+    
+    <div id="map-container"></div>
+    <div id="3d-map-container"></div>
+    
+    <footer>
+        <p>© 2024 Calgary Digital Twin Project</p>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="{% static 'js/map.js' %}"></script>
+    <script src="{% static 'js/sidebar-toggle.js' %}"></script>
+</body>
+</html>
