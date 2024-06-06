@@ -99,3 +99,6 @@ body, html {
     color: #333;
     z-index: 3; /* Ensure button is above other elements */
 }
+#3dViewDiv {
+    width: 100%;
+}
